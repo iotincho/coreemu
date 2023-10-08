@@ -1,0 +1,14 @@
+[Unit]
+Description=custom service "Host Service for CORE emu"
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=ubuntu
+ExecStart=cd /src_files && uvicorn --reload host_service:app > /var/log/host_service.log
+
+[Install]
+WantedBy=multi-user.target
